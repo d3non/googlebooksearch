@@ -20,7 +20,7 @@ mongoose.connect(mongoURL, {useNewUrlParser: true})
     console.log("🗄 ==> Successfully connected to mongoDB.");
   })
   .catch((err) => {
-    console.log(`Error connecting to mongoDB: ${err}`);
+    console.log(`Error connecting to mongoDB error: ${err}`);
   });
 
 require("./routes/api-routes")(app);
