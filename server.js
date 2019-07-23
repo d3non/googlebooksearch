@@ -11,8 +11,8 @@ if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
 }
 
-/*const mongoose = require("mongoose");
-//const mongoURL = process.env.PROD_MONGODB || "mongodb://localhost:27017/googlebooks"
+const mongoose = require("mongoose");
+/*//const mongoURL = process.env.PROD_MONGODB || "mongodb://localhost:27017/googlebooks"
 const mongoURL = process.env.PROD_MONGODB || "mongodb://localhost/googlebooks";
 
 mongoose.connect(mongoURL, {useNewUrlParser: true})
@@ -46,7 +46,7 @@ db.on("error", function(error) {
 
 // Once logged in to the db through mongoose, log a success message
 db.once("open", function() {
-    console.log("Mongoose connection successful.");
+    console.log("Mongoose connection successfuly.");
     // start the server, listen on port 3000
     app.listen(PORT, function() {
         console.log("App running on port " + PORT);
