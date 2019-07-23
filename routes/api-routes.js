@@ -1,10 +1,10 @@
 require("dotenv").config();
 const axios = require("axios");
-const db = require("../models/book.js");
-const path = require("path");
+      db = require("../models/book.js");
+      path = require("path");
 
 module.exports = function(app) {
-    app.get("/api/books", (req, res) => {
+    /*app.get("/api/books", (req, res) => {
         db.book.find().then(
             (booksData) => {
                 res.json(booksData);
@@ -14,7 +14,7 @@ module.exports = function(app) {
                 res.json({error: err});
             }
         );
-    });
+    });*/
 
     app.post("/search", (req, res) => {
         // set bookTitle to the req.body.title with spaces replaced with plus signs(+)
@@ -33,7 +33,7 @@ module.exports = function(app) {
     });
 
     app.post("/api/books", (req, res) => {
-        db.book.create(req.body).then(
+        db.Book.create(req.body).then(
             (response) => {
                 res.json({successful: response});
             }
@@ -44,7 +44,9 @@ module.exports = function(app) {
         );
     });
 
-    app.delete("/api/books/:id", (req, res) => {
+
+
+    /*app.delete("/api/books/:id", (req, res) => {
         db.book.findByIdAndDelete(req.params.id).then(
             (response) => {
                 res.json({successful: response});
@@ -54,7 +56,7 @@ module.exports = function(app) {
                 rres.json({error: err});
             }
         );
-    });
+    });*/
 
     // Send every other request to the React app
     // Define any API routes before this runs
