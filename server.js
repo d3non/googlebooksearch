@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require("express");
 const app = express();
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 3000;
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -28,10 +28,10 @@ mongoose.connect(mongoURL, {useNewUrlParser: true})
 // set mongoose to leverage promises
 
 
-mongoose.Promise = Promise;
-mongoose.set('useCreateIndex', true)
+//mongoose.Promise = Promise;
+//mongoose.set('useCreateIndex', true)
 
-//const dbURI = process.env.MONGODB_URI || "mongodb://localhost:27017/newsArticles";
+//const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/newsArticles";
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/googlebooks";
 mongoose.connect(MONGODB_URI);
 
@@ -57,6 +57,6 @@ db.once("open", function() {
 
 require("./routes/api-routes")(app);
 
-app.listen(PORT, () => {
+/*app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
-});
+});*/
