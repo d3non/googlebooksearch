@@ -17,7 +17,7 @@ const mongoURL = process.env.PROD_MONGODB || "mongodb://localhost/googlebooks";
 
 mongoose.connect(mongoURL, {useNewUrlParser: true})
   .then(() => {
-    console.log("🗄 ==> Successfully connection to mongoDB.");
+    console.log("🗄 ==> Successfully connected to mongoDB.");
   })
   .catch((err) => {
     console.log(`Error connecting to mongoDB: ${err}`);
