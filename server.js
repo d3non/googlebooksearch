@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require("express");
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -26,6 +26,8 @@ mongoose.connect(mongoURL, {useNewUrlParser: true})
 // configure mongoose and start the server
 // =============================================================
 // set mongoose to leverage promises
+
+
 mongoose.Promise = Promise;
 mongoose.set('useCreateIndex', true)
 
@@ -49,7 +51,7 @@ db.once("open", function() {
     console.log("Mongoose connection successfuly.");
     // start the server, listen on port 3000
     app.listen(PORT, function() {
-        console.log("App running on port " + PORT);
+        console.log("App running on new port " + PORT);
     });
 });
 
