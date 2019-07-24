@@ -1,6 +1,6 @@
 require("dotenv").config();
 const axios = require("axios");
-      db = require("../models/book.js");
+      db = require("../models");
       path = require("path");
 
 module.exports = function(app) {
