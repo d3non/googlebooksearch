@@ -5,7 +5,7 @@ const axios = require("axios");
 
 module.exports = function(app) {
     app.get("/api/books", (req, res) => {
-        db.book.find().then(
+        db.Book.find().then(
             (booksData) => {
                 res.json(booksData);
             }
@@ -47,7 +47,7 @@ module.exports = function(app) {
 
 
     app.delete("/api/books/:id", (req, res) => {
-        db.book.findByIdAndDelete(req.params.id).then(
+        db.Book.findByIdAndDelete(req.params.id).then(
             (response) => {
                 res.json({successful: response});
             }
