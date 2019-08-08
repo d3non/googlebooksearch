@@ -23,6 +23,9 @@
     "if-env": "^1.0.4",
     "mongodb": "^3.1.11",
     "mongoose": "^5.4.4",
-    "mongoose-unique-validator": "^2.0.3"
+    "mongoose-unique-validator": "^2.0.3",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "sequelize": "^5.12.3"
   }
 }

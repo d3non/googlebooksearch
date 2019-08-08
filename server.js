@@ -1,7 +1,11 @@
-require('dotenv').config();
+//require('dotenv').config();
 const express = require("express");
 const app = express();
+//Passport
+var passport = require('passport');
+LocalStrategy = require('passport-local').Strategy;
 const PORT = process.env.PORT || 3000;
+//Passport
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -11,27 +15,8 @@ if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
 }
 
-const mongoose = require("mongoose");
-/*//const mongoURL = process.env.PROD_MONGODB || "mongodb://localhost:27017/googlebooks"
-const mongoURL = process.env.PROD_MONGODB || "mongodb://localhost/googlebooks";
+/*const mongoose = require("mongoose");
 
-mongoose.connect(mongoURL, {useNewUrlParser: true})
-  .then(() => {
-    console.log("🗄 ==> Successfully connected to mongoDB.");
-  })
-  .catch((err) => {
-    console.log(`Error connecting to mongoDB error: ${err}`);
-  });*/
-
-// configure mongoose and start the server
-// =============================================================
-// set mongoose to leverage promises
-
-
-//mongoose.Promise = Promise;
-//mongoose.set('useCreateIndex', true)
-
-//const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/newsArticles";
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/googlebooks";
 mongoose.connect(MONGODB_URI);
 
@@ -53,10 +38,30 @@ db.once("open", function() {
     app.listen(PORT, function() {
         console.log("App running on new port " + PORT);
     });
+});*/
+
+//Models
+var models = require("./models");
+
+//Routes
+require('./app/routes/auth.js')(app, passport);
+
+app.get('/', function (req, res) {
+  res.redirect('signin');
+});
+
+//load passport strategy
+require('./app/config/passport/passport.js')(passport, models.user);
+
+//Sync Database
+models.sequelize.sync().then(function () {
+  console.log('Nice! Database looks fine')
+}).catch(function (err) {
+  console.log(err, "Something went wrong with the Database Update!")
 });
 
 require("./routes/api-routes")(app);
 
-/*app.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
-});*/
+});
